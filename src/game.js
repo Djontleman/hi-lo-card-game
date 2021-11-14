@@ -6,7 +6,9 @@ const StandardDeck = require("./standardDeck");
 const prompt = require("prompt-sync")();
 
 const Game = function() {
+    this.players = [];
     this.player;
+    this.playerNumber = 0; 
     this.continue = true;
     this.deck;
 
@@ -16,7 +18,19 @@ const Game = function() {
     console.log();
 
     // Number of players
-    let numberOfPlayers = prompt("How many players are there? (Currently only 1 player is generated) ");
+    let numberOfPlayers;
+    while(true) {
+        numberOfPlayers = parseInt(prompt("How many players are there? (1 - 8) "));
+        if (numberOfPlayers > 0 && numberOfPlayers <= 8) { // Number of players between 1 and 8
+            break;
+        } else {
+            console.log("Error: Invalid input");
+            console.log();
+        }
+    }
+    for (i = 1; i <= numberOfPlayers; i++) {
+        this.players.push(new Player(i));
+    }
     console.log();
 
     // House rules
@@ -37,9 +51,6 @@ const Game = function() {
     }
     console.log();
 
-    // Assign players
-    this.player = new Player(1);
-
     // Shuffle deck
     this.deck = shuffleDeck(this.deck);
 
@@ -49,6 +60,15 @@ const Game = function() {
 
     // Turns
     while(this.continue) {
+        
+        // Assign player to turn
+        if (this.playerNumber > 0 && this.playerNumber < this.players.length) {
+            this.playerNumber++;
+        } else {
+            this.playerNumber = 1;
+        }
+        this.player = this.players[this.playerNumber - 1];
+
         console.log("Player " + this.player.playerNumber + "'s turn starting...")
         this.player, this.deck = turn(this.player, this.deck);
         
@@ -71,7 +91,9 @@ const Game = function() {
 
     // Final points displayed
     console.log("Final points:");
-    console.log("Player " + this.player.playerNumber + ": " + this.player.points);
+    for (player of this.players) {
+        console.log("Player " + player.playerNumber + ": " + player.points);
+    }
     console.log();
 
     // Goodbye prompt
