@@ -1,4 +1,4 @@
-// =============== Game Class v0.1.4 =============== //
+// =============== Game Class v0.1.5 =============== //
 
 const Card = require("./card"); 
 const Player = require("./player");
@@ -13,9 +13,27 @@ const Game = function() {
 
     this.player = new Player(1);
 
-    this.deck = shuffleDeck(this.deck);
-    turn(this.player, this.deck);
-    
+    while(this.continue) {
+        this.deck = shuffleDeck(this.deck);
+        this.player, this.deck = turn(this.player, this.deck);
+        
+        while(true) {
+            let continueResponse = prompt("Continue? (y or n) ");
+            if (continueResponse == "n") {
+                this.continue = false;
+                break;
+            } else if (continueResponse == "y") {
+                break;
+            } else {
+                console.log("Error: Invalid input");
+            }
+        }
+    }
+
+    console.log("Final points:");
+    console.log("Player " + this.player.playerNumber + ": " + this.player.points);
+
+    console.log("Thanks for playing High-Low!");
 }
 
 const turn = function(player, deck) {
@@ -35,7 +53,7 @@ const turn = function(player, deck) {
             console.log("Your guess is 'lower'");
             break;
         } else {
-            console.log("Error: Incorrect input");
+            console.log("Error: Invalid input");
         }
     }
       
@@ -62,8 +80,11 @@ const turn = function(player, deck) {
 
     deck.unshift(comparisonCard);
     deck.unshift(guessCard);
+    player.guess = undefined;
     
     console.log("Player " + player.playerNumber + "'s points: " + player.points);
+
+    return player, deck;
 }
 
 
