@@ -1,4 +1,4 @@
-// =============== Game Class v0.1.3 =============== //
+// =============== Game Class v0.1.4 =============== //
 
 const Card = require("./card"); 
 const Player = require("./player");
@@ -24,8 +24,6 @@ const turn = function(player, deck) {
     let comparisonCard = deck.pop();
     let guessCard = deck.pop();
 
-    console.log(player);
-
     console.log("The face-up card is the " + comparisonCard.name + " of " + comparisonCard.suit);
     let guessing = true;
     while(guessing) {
@@ -42,11 +40,32 @@ const turn = function(player, deck) {
     }
       
     console.log("The face-down card is...");
-    setTimeout(reveal, 3000);
-    function reveal() {
-        console.log("The " + guessCard.name + " of " + guessCard.suit + "!");
+    prompt("(Enter to reveal) ");
+    console.log("The " + guessCard.name + " of " + guessCard.suit + "!")
+    
+    // setTimeout(reveal, 3000)
+    // function reveal() {
+    //     console.log("The " + guessCard.name + " of " + guessCard.suit + "!");
+    // }
+
+    if (player.guess == 1 && comparisonCard.value < guessCard.value
+        || player.guess == 2 && comparisonCard.value > guessCard.value) {
+            console.log("You were correct!");
+            player.points++;
+    } else if (player.guess == 2 && comparisonCard.value < guessCard.value
+        || player.guess == 1 && comparisonCard.value > guessCard.value) {
+            console.log("You were wrong!");
+            player.points--;
+    } else {
+        console.log("The values were the same!");
     }
+
+    deck.unshift(comparisonCard);
+    deck.unshift(guessCard);
+    
+    console.log("Player " + player.playerNumber + "'s points: " + player.points);
 }
+
 
 const shuffleDeck = function(deck) {
     const unshuffledDeck = deck;
