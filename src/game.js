@@ -1,4 +1,4 @@
-// =============== Game Class v0.1.0 =============== //
+// =============== Game Class v0.1.1 =============== //
 
 const Card = require("./card"); 
 const StandardDeck = require("./standardDeck");
@@ -9,15 +9,17 @@ const Game = function() {
     const standardDeck = new StandardDeck
     this.deck = standardDeck.cards;
 
+    this.deck = shuffleDeck(this.deck);
+    console.log(this.deck);
     
 }
 
-Game.prototype.turn = function(player, deck) {
+const turn = function(player, deck) {
     pass;
 
 }
 
-Game.prototype.shuffleDeck = function(deck) {
+const shuffleDeck = function(deck) {
     const unshuffledDeck = deck;
     const shuffledDeck = [];
 
