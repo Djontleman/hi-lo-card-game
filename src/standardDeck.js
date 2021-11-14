@@ -1,4 +1,4 @@
-// =============== Standard Deck v0.1.0 =============== //
+// =============== Standard Deck v1.0.0 =============== //
 
 const Card = require("./card");
 

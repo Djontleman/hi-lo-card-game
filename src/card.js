@@ -1,4 +1,4 @@
-// =============== Card Class v0.1.0 =============== //
+// =============== Card Class v1.0.0 =============== //
 
 const Card = function(value, suit, name) {
     this.value = value;

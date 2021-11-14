@@ -1,4 +1,4 @@
-// =============== Player Class v0.1.0 =============== //
+// =============== Player Class v1.0.0 =============== //
 
 const Player = function(playerNumber) {
     this.playerNumber = playerNumber;
