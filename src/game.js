@@ -1,4 +1,4 @@
-// =============== Game Class v0.1.2 =============== //
+// =============== Game Class v0.1.3 =============== //
 
 const Card = require("./card"); 
 const Player = require("./player");
@@ -22,11 +22,11 @@ const turn = function(player, deck) {
 
     // End of deck array is defined as the "top of the deck"
     let comparisonCard = deck.pop();
-    let guessCard = deck.pop;
+    let guessCard = deck.pop();
 
     console.log(player);
 
-    console.log("The card is the " + comparisonCard.name + " of " + comparisonCard.suit);
+    console.log("The face-up card is the " + comparisonCard.name + " of " + comparisonCard.suit);
     let guessing = true;
     while(guessing) {
         player.guess = prompt("What is your guess? (1 for higher, 2 for lower) ")
@@ -41,7 +41,11 @@ const turn = function(player, deck) {
         }
     }
       
-    console.log(player.guess);
+    console.log("The face-down card is...");
+    setTimeout(reveal, 3000);
+    function reveal() {
+        console.log("The " + guessCard.name + " of " + guessCard.suit + "!");
+    }
 }
 
 const shuffleDeck = function(deck) {
