@@ -1,4 +1,4 @@
-// =============== Game Class v1.0.0 =============== //
+// =============== Game Class =============== //
 
 const Card = require("./card"); 
 const Player = require("./player");
