@@ -18,11 +18,19 @@ const Game = function() {
     console.log();
 
     // Number of players
-    let numberOfPlayers = parseInt(prompt("How many players are there? "));
+    let numberOfPlayers;
+    while(true) {
+        numberOfPlayers = parseInt(prompt("How many players are there? (1 - 8) "));
+        if (numberOfPlayers > 0 && numberOfPlayers <= 8) { // Number of players between 1 and 8
+            break;
+        } else {
+            console.log("Error: Invalid input");
+            console.log();
+        }
+    }
     for (i = 1; i <= numberOfPlayers; i++) {
         this.players.push(new Player(i));
     }
-    console.log(this.players);
     console.log();
 
     // House rules
