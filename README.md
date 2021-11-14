@@ -9,7 +9,7 @@ A project aims to make the game High-Low using JavaScript. Currently, this is a 
 - Run the game.js file (using node etc.)
 
 ## How to Play
-After the game is started by running the game.js file, the user will be prompted to enter the number of players (only 1 is currently supported). 
+After the game is started by running the game.js file, the user will be prompted to enter the number of players (only 1 is currently supported). The user then chooses Aces high or Aces low.
 - Two cards from the top of the deck are laid out, one face-up and one face-down. 
 - The player must then guess whether the face-down card is higher or lower than the face-up card. 
     - If they are correct, they gain a point. 
@@ -19,11 +19,13 @@ After the game is started by running the game.js file, the user will be prompted
 
 ## Versions
 Messing around with semantic versions cause why not :D
-- v1.0.0: Command-line interaface. Only one player is supported. Game continues until user chooses to end game. Reveal of the face-fown card is done by the user. No house rules.
+- v1.1.0: House rules - Choose Aces high or Aces low.
+- v1.0.0: Command-line interface. Only one player is supported. Game continues until user chooses to end game. Reveal of the face-fown card is done by the user. No house rules.
 
 ## Future Plans
 - Multiple players (same computer)
-- House rules (Aces high/low)
+- House rules (Option to change face-up card)
 - Unit-testing of methods 
+- Betting/drinking game variations
 - Front-end using React.js
 - Back-end using Java and SQL(?)
