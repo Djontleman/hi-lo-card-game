@@ -59,4 +59,19 @@ const StandardDeck = function() {
     ]
 }
 
+StandardDeck.prototype.acesHigh = function() {
+    const acesLow = this.cards;
+    const acesHigh = [];
+
+    for (i = 0; i < acesLow.length; i++) {
+        acesHigh.push(acesLow[i]);
+
+        if (acesHigh[i].value == 1) {
+            acesHigh[i].value = 14;
+        }
+    }
+
+    this.cards = acesHigh;
+}
+
 module.exports = StandardDeck;

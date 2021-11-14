@@ -8,13 +8,33 @@ const prompt = require("prompt-sync")();
 const Game = function() {
     this.player;
     this.continue = true;
-    const standardDeck = new StandardDeck
-    this.deck = standardDeck.cards;
+    this.deck;
 
     // Welcome prompt
     console.log();
     console.log("Welcome to High-Low!");
-    let numberOfPlayers = prompt("How many players are there? (Currently only 1 player is generated) ")
+    console.log();
+
+    // Number of players
+    let numberOfPlayers = prompt("How many players are there? (Currently only 1 player is generated) ");
+    console.log();
+
+    // House rules
+    const standardDeck = new StandardDeck;
+    while(true) {
+        let acesHigh = prompt("Aces high or Aces low? (h or l) ");
+        if (acesHigh == "l") {
+            this.deck = standardDeck.cards;
+            break;
+        } else if (acesHigh == "h") {
+            standardDeck.acesHigh();
+            this.deck = standardDeck.cards;
+            break;
+        } else {
+            console.log("Error: invalid input");
+            console.log();
+        }
+    }
     console.log();
 
     // Assign players
