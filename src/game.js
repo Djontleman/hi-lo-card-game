@@ -85,6 +85,24 @@ const Game = function() {
             let continueResponse = prompt("Continue? (y or n) ");
             if (continueResponse == "n") {
                 this.continue = false;
+
+                // Ask for confirmation to end game if round not over
+                let endGameConfirm;
+                if (this.player != this.players[this.players.length - 1]) {
+                    while(true) {
+                        endGameConfirm = prompt("Round is not over, are you sure? (y or n) ");
+                        if (endGameConfirm == "n") {
+                            this.continue = true;
+                            break;
+                        } else if (endGameConfirm == "y") {
+                            break;
+                        } else {
+                            console.log("Error: Invalid input");
+                            console.log();
+                        }
+                    }
+                }
+
                 console.log();
                 break;
             } else if (continueResponse == "y") {
