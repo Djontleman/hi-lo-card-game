@@ -11,6 +11,7 @@ const Game = function() {
     this.playerNumber = 0; 
     this.continue = true;
     this.deck;
+    this.round = 0;
 
     // Welcome prompt
     console.log();
@@ -66,9 +67,11 @@ const Game = function() {
             this.playerNumber++;
         } else {
             this.playerNumber = 1;
+            this.round++;
         }
         this.player = this.players[this.playerNumber - 1];
 
+        console.log("Round " + this.round + ":");
         console.log("Player " + this.player.playerNumber + "'s turn starting...")
         this.player, this.deck = turn(this.player, this.deck);
         
