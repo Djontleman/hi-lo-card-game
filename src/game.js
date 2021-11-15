@@ -75,6 +75,11 @@ const Game = function() {
         console.log("Player " + this.player.playerNumber + "'s turn starting...")
         this.player, this.deck = turn(this.player, this.deck);
         
+        // Displays if round has finished
+        if (this.player === this.players[this.players.length - 1]) {
+            console.log("Round " + this.round + " finished")
+        }
+
         // Continue or end game prompt
         while(true) {
             let continueResponse = prompt("Continue? (y or n) ");
