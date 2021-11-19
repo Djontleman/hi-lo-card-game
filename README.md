@@ -19,15 +19,16 @@ After the game is started by running the game.js file, the user will be prompted
 
 ## Versions
 Messing around with semantic versions cause why not :D
+- v1.4.0: House rules - Option to redraw face-up card. Choose whether this rule is in play at start of game.
 - v1.3.0: Round counter. Game asks for confirmation to end if the round is not over.
 - v1.2.0: Multiple players supported
 - v1.1.0: House rules - Choose Aces high or Aces low.
 - v1.0.0: Command-line interface. Only one player is supported. Game continues until user chooses to end game. Reveal of the face-fown card is done by the user. No house rules.
 
 ## Future Plans
-- House rules (Option to change face-up card)
-- Player can leave early
+- Refactor code to be more conventional
 - Unit-testing of methods 
 - Betting/drinking game variations
 - Front-end using React.js
 - Back-end using Java and SQL(?)
+- Player can leave early
