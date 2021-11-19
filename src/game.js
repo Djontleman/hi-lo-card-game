@@ -137,6 +137,21 @@ const turn = function(player, deck) {
 
     console.log("The face-up card is the " + comparisonCard.name + " of " + comparisonCard.suit);
     console.log();
+    while(true) {
+        let drawNewResponse = prompt("Do you want to draw a new card? (y or n) "); // option to redraw face-up card
+        if (drawNewResponse == "y") {
+            deck.unshift(comparisonCard);
+            comparisonCard = deck.pop();
+            console.log("The face-up card is the " + comparisonCard.name + " of " + comparisonCard.suit);
+            break;
+        } else if (drawNewResponse == "n") {
+            break;
+        } else {
+            console.log("Error: Invalid input");
+            console.log();
+        }
+    }
+    console.log();
 
     // User inputs guess
     let guessing = true;
