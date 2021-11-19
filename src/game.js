@@ -12,6 +12,7 @@ const Game = function() {
     this.continue = true;
     this.deck;
     this.round = 0;
+    this.redraw;
 
     // Welcome prompt
     console.log();
@@ -34,7 +35,7 @@ const Game = function() {
     }
     console.log();
 
-    // House rules
+    // House rules - Aces high/low
     const standardDeck = new StandardDeck;
     while(true) {
         let acesHigh = prompt("Aces high or Aces low? (h or l) ");
@@ -44,6 +45,22 @@ const Game = function() {
         } else if (acesHigh == "h") {
             standardDeck.acesHigh();
             this.deck = standardDeck.cards;
+            break;
+        } else {
+            console.log("Error: invalid input");
+            console.log();
+        }
+    }
+    console.log();
+
+    // House rules - Redraw face-up card
+    while(true) {
+        let redrawResponse = prompt("Option to redraw face-up card? (y or n) ");
+        if (redrawResponse == "y") {
+            this.redraw = true;
+            break;
+        } else if (redrawResponse == "n") {
+            this.redraw = false;
             break;
         } else {
             console.log("Error: invalid input");
@@ -73,7 +90,7 @@ const Game = function() {
 
         console.log("Round " + this.round + ":");
         console.log("Player " + this.player.playerNumber + "'s turn starting...")
-        this.player, this.deck = turn(this.player, this.deck);
+        this.player, this.deck = turn(this.player, this.deck, this.redraw);
         
         // Displays if round has finished
         if (this.player === this.players[this.players.length - 1]) {
@@ -128,7 +145,7 @@ const Game = function() {
 }
 
 // Turn method
-const turn = function(player, deck) {
+const turn = function(player, deck, redraw) {
 
     // End of deck array is defined as the "top of the deck"
     // Lay out top two cards
@@ -137,21 +154,23 @@ const turn = function(player, deck) {
 
     console.log("The face-up card is the " + comparisonCard.name + " of " + comparisonCard.suit);
     console.log();
-    while(true) {
-        let drawNewResponse = prompt("Do you want to draw a new card? (y or n) "); // option to redraw face-up card
-        if (drawNewResponse == "y") {
-            deck.unshift(comparisonCard);
-            comparisonCard = deck.pop();
-            console.log("The face-up card is the " + comparisonCard.name + " of " + comparisonCard.suit);
-            break;
-        } else if (drawNewResponse == "n") {
-            break;
-        } else {
-            console.log("Error: Invalid input");
-            console.log();
+    if (redraw == true) {
+        while(true) {
+            let drawNewResponse = prompt("Do you want to draw a new card? (y or n) "); // option to redraw face-up card
+            if (drawNewResponse == "y") {
+                deck.unshift(comparisonCard);
+                comparisonCard = deck.pop();
+                console.log("The face-up card is the " + comparisonCard.name + " of " + comparisonCard.suit);
+                break;
+            } else if (drawNewResponse == "n") {
+                break;
+            } else {
+                console.log("Error: Invalid input");
+                console.log();
+            }
         }
+        console.log();
     }
-    console.log();
 
     // User inputs guess
     let guessing = true;
